@@ -15,6 +15,13 @@ Sales_item &Sales_item::combine(const Sales_item &item)
     return *this;
 }
 
+Sales_item &Sales_item::operator+=(const Sales_item &rhs)
+{
+    this->revenue += rhs.revenue;
+    this->units_sold += rhs.units_sold;
+    return *this;
+}
+
 double Sales_item::avg_price() const
 {
    if(units_sold)
@@ -50,14 +57,17 @@ std::ostream &print(std::ostream &os, const Sales_item &item)
 void sales_item_test()
 {
     Sales_item total;
-    if(read(std::cin, total)){
+    //if(read(std::cin, total)){
+    if(std::cin >> total){
         Sales_item tran;
         while(read(std::cin, tran)){
             if(total.isbn() == tran.isbn()){
-                total.combine(tran);
+                //total.combine(tran);
+                total += tran;
             }
             else{
-                print(std::cout, total);
+                //print(std::cout, total);
+                std::cout << total;
                 total = tran;
             }
         }
@@ -65,4 +75,31 @@ void sales_item_test()
     else{
         std::cout << "No data?" << std::endl;
     }
+}
+
+// Act the same as print function.
+// (should not formate a new line.)
+std::ostream &operator <<(std::ostream &os, const Sales_item &item)
+{
+    os << "bookNo : " << item.isbn() << " acount: " << item.units_sold << " total revenue: "
+       << item.revenue << " avg_price: " << item.avg_price();
+    return os;
+}
+
+//act the same as read function.
+//must deal with input error.
+std::istream &operator >>(std::istream &is, Sales_item &item)
+{
+    double price = 0;
+    is >> item.bookNo >> item.units_sold >> price;
+    if(is)
+        item.revenue = price * item.units_sold;
+    else
+        item = Sales_item();
+    return is;
+}
+
+Sales_item operator+(const Sales_item &lhs, const Sales_item &rhs)
+{
+
 }
