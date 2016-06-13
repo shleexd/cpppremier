@@ -41,7 +41,7 @@ std::ostream &print(std::ostream &os, const Sales_item &item);
 std::ostream &operator << (std::ostream &os, const Sales_item &item);
 
 std::istream &read(std::istream &is, Sales_item &item);
-//overload operator >> to act lile function read.
+//overload operator >> to act like function read.
 std::istream &operator >> (std::istream &is, Sales_item &item);
 
 void sales_item_test();
