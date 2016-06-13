@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    hasptr.cpp
+    hasptr_p.cpp \
+    hasptr_v.cpp
 
 HEADERS += \
-    hasptr.h
+    hasptr_v.h \
+    hasptr_p.h
