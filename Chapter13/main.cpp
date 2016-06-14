@@ -6,7 +6,7 @@ using namespace std;
 
 int main(void)
 {
-    //hasptr_v();
-    hasPtr_p();
+    hasptr_v();
+    //hasPtr_p();
     return 0;
 }

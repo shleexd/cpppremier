@@ -7,6 +7,7 @@
 //class that act like values.
 class HasPtr_v
 {
+friend void swap(HasPtr_v &lhs, HasPtr_v &rhs);
 public:
     HasPtr_v(const std::string &s = std::string()) :
         ps(new std::string(s)), i(0) { }
@@ -23,5 +24,6 @@ private:
 };
 
 void hasptr_v();
+void swap(HasPtr_v &lhs, HasPtr_v &rhs);
 
 #endif // HASPTR_H
