@@ -5,8 +5,10 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     quote.cpp \
-    bulk_quote.cpp
+    bulk_quote.cpp \
+    disc_quote.cpp
 
 HEADERS += \
     quote.h \
-    bulk_quote.h
+    bulk_quote.h \
+    disc_quote.h
