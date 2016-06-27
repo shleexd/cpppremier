@@ -16,12 +16,13 @@ void exc_9_13(void){
     vec_dbl.insert(vec_dbl.begin(), 22);
     vec_dbl.insert(vec_dbl.end(), 43, 6);
     vec_dbl.erase(vec_dbl.begin() + 3, vec_dbl.end());
-    vec_dbl.resize(1);
+    string::size_type cap = vec_dbl.capacity();
 
     for(auto &i : vec_dbl){
         cout << i << " ";
     }
     cout << endl;
+    cout << "capacity:" << cap << endl;
 }
 
 int main(void)
