@@ -5,7 +5,7 @@
 using namespace std;
 
 
-//只读算法包括find, count, accumulate, equal。
+//只读算法包括find, count, accumulate, equal。----------------------------------------
 
 //find算法接受三个参数。前两个表示迭代范围，第三个为要找的值。
 void findEx(){
@@ -38,9 +38,9 @@ void eql(){
     cout << "vec1 " << (eq ? "is" : " is not ") << "equal to vec2" << endl;
 
 }
+//只读算法-----------------------------------------------------------------------end
 
-
-//写算法。
+//写算法。-----------------------------------------------------------------------begin
 //包括fill,back_inseter,fill_n,copy,replace,
 //注意，由于泛型算法本身不执行容器操作，所以写入的数目确保不大于容器的容量。
 
@@ -87,11 +87,48 @@ void rpl_copy(){
     for(auto &i : vec2)
         cout << i << " " ;
 }
+//写算法。-----------------------------------------------------------------------end
 
 
+//重排元素的算法。-----------------------------------------------------------------begin
+//sort是不稳定的，要稳定排序则用stable_sort
 
-//重排元素的算法。
+//定义一元谓词。
+inline bool
+isShorter(const string &s1, const string &s2)
+    {
+        return s1.size() < s2.size();
+    }
+//先对容器内容进行排序，在用unique把重复的单词移到末尾（不是真的移动，
+//因为end_unique之后的元素内容是未知的），最后利用erase把重读的删除掉。
+void elimDups(vector<string> &words){
 
+//    sort(words.begin(), words.end());
+
+    //上述版本的sort是按照字典顺序进行排序的，即 < 符号。
+    //现定义自己版本的谓词，使得函数按照自己定义的条件进行排序。
+    sort(words.begin(), words.end(), isShorter);
+
+    auto end_unique = unique(words.begin(), words.end());
+    words.erase(end_unique, words.end());
+    for(auto &i : words)
+        cout << i << " " ;
+}
+
+//exercise 10.13:
+//partition算法，接受一个谓词，true的值会排在容器的前半部分，否则排在后半部分。返回一个迭代器，指向true之后的元素。
+//使用该函数，划分string中是否长度大于等于5字符。
+bool isLargerOrEquleToFive(const string &s){
+     return s.size() >= 5;
+}
+void  partString(vector<string> &s){
+    auto end_LQ5 = partition(s.begin(), s.end(), isLargerOrEquleToFive);
+    for(auto it = s.begin(); it != end_LQ5; ++it) {
+        cout << *it << " ";
+    }
+}//exercise 10.13:
+
+//重排元素的算法。-----------------------------------------------------------------end.
 int main( )
 {
 //    findEx()r
@@ -100,6 +137,12 @@ int main( )
 //    fillEx();
 //    bkInserter();
 //    rpl();
-    rpl_copy();
+//    rpl_copy();
+
+      vector<string> vec({"the", "quick", "jumps", "over", "the", "slow", "red", "turtle", "lfdskfjslkfjsflk"});
+//    elimDups(vec);
+
+      partString(vec);
+
     return 0;
 }
