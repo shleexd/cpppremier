@@ -93,7 +93,7 @@ void rpl_copy(){
 //重排元素的算法。-----------------------------------------------------------------begin
 //sort是不稳定的，要稳定排序则用stable_sort
 
-//定义一元谓词。
+//定义二元谓词。
 inline bool
 isShorter(const string &s1, const string &s2)
     {
@@ -127,8 +127,10 @@ void  partString(vector<string> &s){
         cout << *it << " ";
     }
 }//exercise 10.13:
-
 //重排元素的算法。-----------------------------------------------------------------end.
+
+//同exercise 10.13 所示， 若要选出给定长度单词，而不是把5硬编码到函数里面。
+//则此时可以用lambda表达式。
 int main( )
 {
 //    findEx()r
