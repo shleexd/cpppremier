@@ -131,6 +131,16 @@ void  partString(vector<string> &s){
 
 //同exercise 10.13 所示， 若要选出给定长度单词，而不是把5硬编码到函数里面。
 //则此时可以用lambda表达式。
+
+//find_if using lambda.
+void lam_find_if(vector<string> &vec){
+    int sz = 4;
+    auto it = find_if(vec.begin(), vec.end(),
+                [sz](const string &str)
+                { return str.size() > sz;});
+    cout << *it << endl;
+}
+
 int main( )
 {
 //    findEx()r
@@ -144,7 +154,8 @@ int main( )
       vector<string> vec({"the", "quick", "jumps", "over", "the", "slow", "red", "turtle", "lfdskfjslkfjsflk"});
 //    elimDups(vec);
 
-      partString(vec);
+//      partString(vec);
+      lam_find_if(vec);
 
     return 0;
 }
